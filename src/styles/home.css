@@ -1,0 +1,20 @@
+.carrousel {
+    overflow-x: scroll;
+    width: 100%;
+    display: flex;
+}
+
+.card {
+    min-width: 200px;
+    margin-right: 8px;
+}
+
+.footercard {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+
+}
+
+
+

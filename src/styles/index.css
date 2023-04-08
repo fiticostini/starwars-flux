@@ -1,3 +1,11 @@
 /* 
     General Styles
 */
+.starWarlogo {
+    Width: 70px;
+    height: 60px;
+}
+
+.dangerLine {
+    margin-bottom: 200px;
+}
