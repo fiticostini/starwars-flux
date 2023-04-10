@@ -19,8 +19,8 @@ export const Navbar = () => {
 					<ul className="dropdown-menu">
 						
               <div>{store.favorites.map((favorito, index) => {
-							return (<li className="d-flex justify-content-between">
-								<p key={`${favorito.uid}-${index}`}>{favorito.properties.name}</p>
+							return (<li key={`${favorito._id}-${index}`} className="d-flex justify-content-between">
+								<p >{favorito.properties.name}</p>
                 <button className="btn btn-outline-dark border border-0" 
                 onClick={() => actions.addFavorite(favorito)}><i className="fas fa-trash"></i></button>
 						

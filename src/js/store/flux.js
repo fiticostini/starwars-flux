@@ -27,23 +27,32 @@ const getState = ({ getStore, getActions, setStore }) => {
               const data = await response.json();  //traducimos a js
               console.log(data);
               caracterDetails.push(data.result)
+              setStore({...store, personajesSwapi: caracterDetails})
+              localStorage.setItem("character", JSON.stringify (caracterDetails))
             }
           } catch (error) {
             console.log(error);
           }
         }
-        setStore({...store, personajesSwapi: caracterDetails})
-        localStorage.setItem("character", JSON.stringify (caracterDetails))
+        
       },
 
       fetchPlanets: async () => {
         const store = getStore(); //traigo valores del store a mi funcion
+        const localPlanets = localStorage.getItem("planet")
+        if (localPlanets) {
+          setStore({...store, planetasSwapi: JSON.parse(localPlanets) })
+          return
+        }
+        let planetDetails = []
         for (let index = 2; index <= 11; index++) {
           try {
             const response = await fetch(`https://www.swapi.tech/api/planets/${index}`);
             if (response.ok) {  //validamos si fue correcto
               const data = await response.json();  //traducimos a js
-              setStore({ ...store, planetasSwapi: [...store.planetasSwapi, data.result] });
+              planetDetails.push(data.result)
+              setStore({ ...store, planetasSwapi: planetDetails});
+              localStorage.setItem("planet", JSON.stringify (planetDetails))
             }
           } catch (error) {
             console.log(error);
@@ -55,6 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         const favorites = store.favorites;
         const exists = favorites.find((favorito) => favorito === item);
+        console.log(exists);
         if (exists) {
           const filteredFavorites = favorites.filter(
             (favorito) => item !== favorito
